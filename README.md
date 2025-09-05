@@ -65,21 +65,19 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [azurerm_container_registry_token_password.token_password](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_registry_token_password) | resource |
+| [azurerm_redis_cache_access_policy.policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache_access_policy) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_container_registry_token_id"></a> [container\_registry\_token\_id](#input\_container\_registry\_token\_id) | The ID of the Container Registry Token that this Container Registry Token Password resides in. Changing this forces a new Container Registry Token Password to be created. | `string` | n/a | yes |
-| <a name="input_password1_expiry"></a> [password1\_expiry](#input\_password1\_expiry) | The expiration date of the password in RFC3339 format. If not specified, the password never expires. Changing this forces a new resource to be created. | `string` | `null` | no |
-| <a name="input_password2_expiry"></a> [password2\_expiry](#input\_password2\_expiry) | The expiration date of the password in RFC3339 format. If not specified, the password never expires. Changing this forces a new resource to be created. | `string` | `null` | no |
+| <a name="input_name"></a> [name](#input\_name) | The name of the Redis Cache Access Policy. Changing this forces a new Redis Cache Access Policy to be created. | `string` | n/a | yes |
+| <a name="input_redis_cache_id"></a> [redis\_cache\_id](#input\_redis\_cache\_id) | The ID of the Redis Cache. Changing this forces a new Redis Cache Access Policy to be created. | `string` | n/a | yes |
+| <a name="input_permissions"></a> [permissions](#input\_permissions) | Permissions that are going to be assigned to this Redis Cache Access Policy. | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_id"></a> [id](#output\_id) | The ID of the Container Registry Token Password. |
-| <a name="output_password1"></a> [password1](#output\_password1) | n/a |
-| <a name="output_password2"></a> [password2](#output\_password2) | n/a |
+| <a name="output_id"></a> [id](#output\_id) | The ID of the Redis Cache Access Policy. |
 <!-- END_TF_DOCS -->

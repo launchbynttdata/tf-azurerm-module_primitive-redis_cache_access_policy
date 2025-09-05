@@ -110,4 +110,3 @@ variable "tags" {
   nullable    = true
   default     = {}
 }
-
