@@ -53,8 +53,8 @@ make check
 ## Requirements
 
 | Name | Version |
-|------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.0 |
+| ---- | ------- |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.3 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 3.117 |
 
 ## Modules
@@ -64,13 +64,13 @@ No modules.
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [azurerm_redis_cache_access_policy.policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache_access_policy) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_name"></a> [name](#input\_name) | The name of the Redis Cache Access Policy. Changing this forces a new Redis Cache Access Policy to be created. | `string` | n/a | yes |
 | <a name="input_redis_cache_id"></a> [redis\_cache\_id](#input\_redis\_cache\_id) | The ID of the Redis Cache. Changing this forces a new Redis Cache Access Policy to be created. | `string` | n/a | yes |
 | <a name="input_permissions"></a> [permissions](#input\_permissions) | Permissions that are going to be assigned to this Redis Cache Access Policy. | `string` | n/a | yes |
@@ -78,6 +78,6 @@ No modules.
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_id"></a> [id](#output\_id) | The ID of the Redis Cache Access Policy. |
 <!-- END_TF_DOCS -->
