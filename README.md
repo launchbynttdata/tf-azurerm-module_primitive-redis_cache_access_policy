@@ -5,55 +5,68 @@
 
 ## Overview
 
-An access policy that allows configuration of Redis permissions.
+This module is managed via the Launch Terraform skeleton.
 
-## Local Development and Testing
+## Usage
 
-To set yourself up for local development and testing activities, ensure you have the following software available on your PATH:
+See [examples/minimal](examples/minimal) for a full working example.
 
-- make
-- git (ensure your user.name and user.email are configured)
-- [git-repo](https://gerrit.googlesource.com/git-repo#install)
-- [`asdf`](https://asdf-vm.com) or [`mise`](https://mise.jdx.dev/)
-- python3 (for pre-commit hooks)
+## Module Development
 
-You will also need to authenticate to the Cloud Provider. Terraform will use the default credential resolution mechanism, so ensure you are signed on through the CLI.
+### Pre-Requisites
 
-Clone this repository to your machine and issue the following command:
+The following commands should be available on your system:
 
-```
-make configure
-```
+- `asdf` or `mise`
+- `make`
+- `python3` (for pre-commit)
 
-This will synchronize supporting repositories into this directory and expose additional targets.
+Additionally, your `git` user and email must be configured. Run the `make configure` command from the root of the repository to ensure that you meet these requirements.
 
-To perform linting actions against the Terraform module and Terratests, issue the following command:
+### Pre-Commit hooks
+
+The [.pre-commit-config.yaml](.pre-commit-config.yaml) file defines `pre-commit` hooks for Terraform formatting, validation, documentation generation, and detect-secrets. Hooks are installed when you run `make configure`. Go linting runs via `make lint` in local development and CI, not via pre-commit.
+
+### Terratest examples
+
+Post-deploy tests in `tests/post_deploy_functional/` and `tests/post_deploy_functional_readonly/` target `examples/minimal` via an explicit folder constant in each `main_test.go`. Adding another example requires a new test entry point or updating that constant; it is not picked up automatically.
+
+### Local Validation
+
+You should validate the changes you make to any module locally, prior to pushing your changes in a branch to GitHub.
+
+1. Ensure that you have run `make configure` successfully.
+2. Ensure you are signed into the appropriate cloud provider (e.g. Azure) for the module under test in your current console session.
+3. Run the Terraform and Golang linters:
 
 ```
 make lint
 ```
 
-To provision cloud resources and perform tests against them, issue the following command:
+4. Once linters pass, run integration tests (apply, test, destroy):
 
 ```
 make test
 ```
 
-Note that `make test` causes the creation of some ignored files on your filesystem. This behavior is expected and we want to exclude any state or lockfiles from being pushed to the repository.
+The pre-commit validations, as well as the `make lint` and `make test` targets, are performed in CI. Running them locally before opening a PR helps ensure a smooth review.
 
-These two commands will be utilized in the pipeline and if you cannot run them successfully locally, you are unlikely to see a different result in the pipeline.
+### Review & Merge Process
 
-For convenience, a target exists that will execute both `make lint` and `make test` for you in sequence. Issue the following command to perform a holistic lint and test:
+Open a Pull Request to the default (`main`) branch. The PR title must follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#specification) format to merge and to drive semantic versioning.
 
-```
-make check
-```
+Ensure CI workflows pass, address review feedback, and obtain approvals required by `CODEOWNERS`.
+
+### Automatic Updates
+
+Shared configuration and workflow files are largely managed through [launch-terraform-skeleton](https://github.com/launchbynttdata/launch-terraform-skeleton). Avoid one-off edits to copied skeleton files in this repository unless necessary (for example `.gitignore` entries for generated artifacts). Use `copier check-update` / `copier update` when refreshing from the skeleton.
+
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.3 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 3.117 |
 
@@ -64,13 +77,13 @@ No modules.
 ## Resources
 
 | Name | Type |
-| ---- | ---- |
+|------|---------|
 | [azurerm_redis_cache_access_policy.policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache_access_policy) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-| ---- | ----------- | ---- | ------- | :------: |
+|------|-------------|------|---------|:--------:|
 | <a name="input_name"></a> [name](#input\_name) | The name of the Redis Cache Access Policy. Changing this forces a new Redis Cache Access Policy to be created. | `string` | n/a | yes |
 | <a name="input_redis_cache_id"></a> [redis\_cache\_id](#input\_redis\_cache\_id) | The ID of the Redis Cache. Changing this forces a new Redis Cache Access Policy to be created. | `string` | n/a | yes |
 | <a name="input_permissions"></a> [permissions](#input\_permissions) | Permissions that are going to be assigned to this Redis Cache Access Policy. | `string` | n/a | yes |
@@ -78,6 +91,6 @@ No modules.
 ## Outputs
 
 | Name | Description |
-| ---- | ----------- |
+|------|---------|
 | <a name="output_id"></a> [id](#output\_id) | The ID of the Redis Cache Access Policy. |
 <!-- END_TF_DOCS -->
