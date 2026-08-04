@@ -77,7 +77,7 @@ No modules.
 ## Resources
 
 | Name | Type |
-|------|---------|
+|------|------|
 | [azurerm_redis_cache_access_policy.policy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/redis_cache_access_policy) | resource |
 
 ## Inputs
@@ -91,6 +91,6 @@ No modules.
 ## Outputs
 
 | Name | Description |
-|------|---------|
+|------|-------------|
 | <a name="output_id"></a> [id](#output\_id) | The ID of the Redis Cache Access Policy. |
 <!-- END_TF_DOCS -->

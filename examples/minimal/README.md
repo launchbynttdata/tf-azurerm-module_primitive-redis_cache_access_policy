@@ -35,7 +35,7 @@ No resources.
 ## Outputs
 
 | Name | Description |
-|------|---------|
+|------|-------------|
 | <a name="output_access_policy_id"></a> [access\_policy\_id](#output\_access\_policy\_id) | n/a |
 | <a name="output_access_policy_name"></a> [access\_policy\_name](#output\_access\_policy\_name) | n/a |
 | <a name="output_redis_cache_id"></a> [redis\_cache\_id](#output\_redis\_cache\_id) | n/a |
