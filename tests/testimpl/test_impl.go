@@ -23,10 +23,9 @@ func TestComposableComplete(t *testing.T, ctx types.TestContext) {
 	cred, err := azidentity.NewDefaultAzureCredential(nil)
 	assert.NoError(t, err, "Failed to create Azure credential")
 
-
-	resourceGroupName := terraform.Output(t, ctx.TerratestTerraformOptions(), "resource_group_name")
-	redisCacheName := terraform.Output(t, ctx.TerratestTerraformOptions(), "redis_cache_name")
-	accessPolicyName := terraform.Output(t, ctx.TerratestTerraformOptions(), "access_policy_name")
+	resourceGroupName := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "resource_group_name")
+	redisCacheName := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "redis_cache_name")
+	accessPolicyName := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "access_policy_name")
 
 	t.Run("EnsureAccessPolicyExists", func(t *testing.T) {
 		client, err := armredis.NewAccessPolicyClient(subscriptionId, cred, nil)
